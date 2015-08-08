@@ -1,0 +1,104 @@
+/* 
+ * boilerplate statement register 用　CSS
+ * Created on : 2015/05/03, 23:12:07
+ * Author     : teru
+*/
+
+.ui-dialog{
+    background-color: red;
+    z-index: 1001 !important;
+}
+
+#boilerplate_statement_register_list{
+    float:left;
+    margin:1px;
+    width:99%;
+    height:auto;
+    max-height:300px;
+    overflow:auto;
+        
+    
+}
+
+.boilerplate_statement_register_figure{
+    float:left;
+    width:95%;
+    height:auto;
+    min-height:30px;
+    margin:2px;
+    padding:3px 3px 38px 3px;
+    border:1px solid silver;
+    -webkit-border-top-left-radius: 2px;  
+    -webkit-border-top-right-radius: 2px;  
+    -webkit-border-bottom-right-radius: 3px;  
+    -webkit-border-bottom-left-radius: 4px;  
+    -moz-border-radius-topleft: 2px;  
+    -moz-border-radius-topright: 2px;  
+    -moz-border-radius-bottomright: 2px;  
+    -moz-border-radius-bottomleft: 2px;  
+}
+.boilerplate_statement_register_figure:hover{
+    margin:1px;
+    border:2px solid crimson;
+}
+
+.boilerplate_statement_register_figure_delete{
+    float:right;
+    margin:-24px 10px 0 0;
+    background-image: url("../images/trash-off.png");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    display:inline-block;
+}
+
+.boilerplate_statement_register_figure_delete:hover{
+    background-image: url("../images/trash-on.png");
+}
+
+
+#boilerplate_statement_register_reg{
+    float:left;
+    margin:1px;
+    width:99%;
+    height:auto;
+    max-height:150px;
+    overflow:auto;
+}
+
+button#boilerplate_statement_register_reg_button {
+    margin:2px;
+    width:98%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 10px 20px;
+    background: -moz-linear-gradient(
+            top,
+            #ff2819 0%,
+            #ab0000);
+    background: -webkit-gradient(
+            linear, left top, left bottom,
+            from(#ff2819),
+            to(#ab0000));
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #7d0000;
+    -moz-box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 2px rgba(255,255,255,0.7);
+    -webkit-box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 2px rgba(255,255,255,0.7);
+    box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 2px rgba(255,255,255,0.7);
+    text-shadow:
+            0px -1px 0px rgba(000,000,000,0.4),
+            0px 1px 0px rgba(255,255,255,0.3);
+}
+
+button#boilerplate_statement_register_reg_button:hover{
+    color: lightgoldenrodyellow;
+    
+}
