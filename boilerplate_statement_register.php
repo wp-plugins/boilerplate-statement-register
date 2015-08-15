@@ -2,7 +2,7 @@
 /*
 Plugin Name: Boilerplate Statement Register
 Plugin URI: 
-Description: 
+Description: You have to register the frequently used words and sentences as boilerplate, it is available in the HTML editor on, easy-to-use plug-in very simple.
 Author: Teruo Morimoto
 Author URI: http://stepxstep.net/
 Version: 1.0.0
@@ -30,7 +30,7 @@ Version: 1.0.0
  */
 add_action('admin_print_footer_scripts',  'init_boilerplate_statement_register');
 function init_boilerplate_statement_register() {
-   
+    
 ?>
     <script type="text/javascript">
         QTags.addButton( 'boilerplate_statement_register_id', '定型文', boilerplate_statement_register_callback );
@@ -39,9 +39,12 @@ function init_boilerplate_statement_register() {
 }
 
 // 管理メニュー初期設定にフック
-add_action('admin_head', 'boilerplate_statement_register_myplugin_admin_menu');
+//add_action('admin_head', 'boilerplate_statement_register_myplugin_admin_menu');
+add_action('admin_print_scripts', 'boilerplate_statement_register_myplugin_admin_menu');
 function boilerplate_statement_register_myplugin_admin_menu() {
+    wp_register_script( 'jquery_core_js', 'http://code.jquery.com/ui/1.10.3/jquery-ui.js', false );
     wp_register_script( 'boilerplate_statement_register_js', plugins_url('js/boilerplate_statement_register.js', __FILE__), false );
+	wp_enqueue_script('jquery_core_js');
     wp_enqueue_script('boilerplate_statement_register_js');
 }
                                 
@@ -49,7 +52,9 @@ function boilerplate_statement_register_myplugin_admin_menu() {
 add_action('admin_print_styles', 'boilerplate_statement_register_myplugin_admin_menu_css');
 function boilerplate_statement_register_myplugin_admin_menu_css() {
     wp_register_style( 'boilerplate_statement_register_css', plugins_url('css/boilerplate_statement_register.css', __FILE__) );
+    wp_register_style( 'jquery_core_css', 'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css' );
     wp_enqueue_style('boilerplate_statement_register_css');
+    wp_enqueue_style('jquery_core_css');
 }
 
 /* 
@@ -74,7 +79,9 @@ function boilerplate_statement_register_get_option(){
 add_action('wp_ajax_boilerplate_statement_register_update_option', 'boilerplate_statement_register_update_option');
 function boilerplate_statement_register_update_option(){
     try{
-        $figures = [];
+//        $figures = [];
+        $figures = array('figures'=>'');
+        
         if( isset($_POST['figure']) ){
             $updatefigures = sanitize_text_field($_POST['figure']);
 
