@@ -34,14 +34,20 @@ jQuery(function($){
         },
         buttons: {
             close: function(){
-                $( this ).dialog( "close" );
+                jQuery( this ).dialog( "close" );
+            }
+        },
+        close:function( event, ui ){
+            if( boilerplate_statement_register_del_flg == 1){
+                boilerplate_statement_register_update_figures(boilerplate_statement_register_get_update_figures());
+                boilerplate_statement_register_del_flg = 0;
             }
         }
     });
     
     //定型文更新用処理登録
-    $("#boilerplate_statement_register_reg_button").click(function(){
-        figure = boilerplate_statement_register_escapeHTML2($("#boilerplate_statement_register_reg").val());
+    jQuery("#boilerplate_statement_register_reg_button").click(function(){
+        figure = boilerplate_statement_register_escapeHTML2(jQuery("#boilerplate_statement_register_reg").val());
         if( figure === ''){
             alert('登録する定型文がありません。');
         }
@@ -57,13 +63,14 @@ jQuery(function($){
     });
     
     //定型文ダイアログクローズ時処理登録
+/*    
     $( "#boilerplate_statement_register_dialog" ).on( "dialogclose", function( event, ui ) {
         if( boilerplate_statement_register_del_flg == 1){
             boilerplate_statement_register_update_figures(boilerplate_statement_register_get_update_figures());
             boilerplate_statement_register_del_flg = 0;
         }
     } );
-
+*/
     
 });
 
@@ -75,7 +82,7 @@ function boilerplate_statement_register_callback(button, element, c, ed)
 {
     boilerplate_statement_register_canvas = c.canvas;
     //定型文編集ダイアログオープン
-    $("#boilerplate_statement_register_dialog").dialog("open");
+    jQuery("#boilerplate_statement_register_dialog").dialog("open");
 
 
 }
@@ -84,7 +91,7 @@ function boilerplate_statement_register_callback(button, element, c, ed)
  * サーバーからの定型文エスケープ処理
  */
 function boilerplate_statement_register_get_update_figures(){
-    var childs = $("#boilerplate_statement_register_list").children(".boilerplate_statement_register_figure");
+    var childs = jQuery("#boilerplate_statement_register_list").children(".boilerplate_statement_register_figure");
     var str="";
     for( var i=0; i<childs.length; i++ ){
         if( str != ""){
@@ -104,7 +111,7 @@ function boilerplate_statement_register_get_figures(){
     
     var posturl ="admin-ajax.php";
 
-    $.ajax({ 
+    jQuery.ajax({ 
         async: false,
         data: {"action":"boilerplate_statement_register_get_option"},
         url: posturl,
@@ -127,36 +134,36 @@ function boilerplate_statement_register_get_figures(){
  */
 function boilerplate_statement_register_draw_list(){
     
-    $("#boilerplate_statement_register_list").empty();
+    jQuery("#boilerplate_statement_register_list").empty();
     
     var str = "";
     
     if( boilerplate_statement_register_figures === null  ){
         str = '<p>まだ、選択可能な定型文がありません。</p>'
-        $("#boilerplate_statement_register_list").append(str);
+        jQuery("#boilerplate_statement_register_list").append(str);
     }
     else{
         var figures = boilerplate_statement_register_figures['figures'];
         for(var i=0; i<figures.length; i++ ){
-            $("#boilerplate_statement_register_list").append(boilerplate_statement_register_draw_one_figure(i,figures[i]));
+            jQuery("#boilerplate_statement_register_list").append(boilerplate_statement_register_draw_one_figure(i,figures[i]));
         }
     }
     
     //クリック時の反映処理登録
-    $(".boilerplate_statement_register_figure").click(function(){
+    jQuery(".boilerplate_statement_register_figure").click(function(){
         boilerplate_statement_register_set_canvas(this.innerText);
     })
     
     //ゴミ箱クリック時の削除処理登録
-    $(".boilerplate_statement_register_figure_delete").click(function(){
+    jQuery(".boilerplate_statement_register_figure_delete").click(function(){
         var id = this.attributes["value"].value;
         var del_ele="#boilerplate_statement_register_figure-"+id;
-        $(del_ele).remove();
+        jQuery(del_ele).remove();
         this.parentNode.removeChild(this);
         boilerplate_statement_register_del_flg = 1;
-        if( $("#boilerplate_statement_register_list")[0].childNodes.length == 0){
+        if( jQuery("#boilerplate_statement_register_list")[0].childNodes.length == 0){
             var str = '<p>まだ、選択可能な定型文がありません。</p>'
-            $("#boilerplate_statement_register_list").append(str);
+            jQuery("#boilerplate_statement_register_list").append(str);
         }
     });
     
@@ -239,10 +246,10 @@ function boilerplate_statement_register_get_selectedstr(){
     if( startPos !== endPos ){
         cursorPos = endPos;
         i = v.substring(startPos, endPos); // inside the selection
-        $("#boilerplate_statement_register_reg").val(i);
+        jQuery("#boilerplate_statement_register_reg").val(i);
     }
     else{
-        $("#boilerplate_statement_register_reg").val("");
+        jQuery("#boilerplate_statement_register_reg").val("");
     }
     
 }
@@ -256,7 +263,7 @@ function boilerplate_statement_register_update_figures(figure){
 
     var figures = figure;
 
-    $.ajax({ 
+    jQuery.ajax({ 
         async: false,
         data: {"action":"boilerplate_statement_register_update_option","figure":figures},
         url: posturl,
@@ -265,7 +272,7 @@ function boilerplate_statement_register_update_figures(figure){
         success: function(data) {
             boilerplate_statement_register_figures = data;
             boilerplate_statement_register_draw_list();
-            $("#boilerplate_statement_register_reg").val("");
+            jQuery("#boilerplate_statement_register_reg").val("");
 
         },
         error:  function(XMLHttpRequest, textStatus, errorThrown) {

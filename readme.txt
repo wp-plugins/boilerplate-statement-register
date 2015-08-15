@@ -1,7 +1,7 @@
 ﻿=== Boilerplate Statement Register ===
 Contributors: Teruo Morimoto
 Tags: 定型文、挨拶文、fixed phrases、a greeting
-Requires at least: 3.0
+Requires at least: 3.3
 Tested up to: 4.1.1
 Stable tag: 1.0.0
 License: GPLv2
